@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <form action="/" method="POST">
+
+      <label for="name">Ingrese su nombre</label>
+      <input type="text" id="name" name="name">
+
+      <select name="color">
+        <option value="rojo">Rojo</option>
+        <option value="verde">Verde</option>
+        <option value="azul">Azul</option>
+      </select>
+
+      <label for="email">Ingrese su email</label>
+      <input type="email" id="email"  name="email">
+
+      <label for="edad">Ingrese su edad</label>
+      <input type="number" name="edad" id="edad">
+
+      <button>Enviar</button>
+
+    </form>
+    
+    <% if(locals.errors){ %>
+      <h3>Lista de errores</h3>
+
+      <% if(errors.name){ %>
+          <p><%=errors.name.msg %></p>
+      <%}%>
+
+      <% if(errors.color){ %>
+        <p><%=errors.color.msg %></p>
+      <%}%>
+
+      <% if(errors.email){ %>
+        <p><%=errors.email.msg %></p>
+      <%}%>
+
+    <%}%>
+
+    <% if(locals.state === "success"){ %>
+      Hola <%=name %> , elegiste el color: <%=color %> , tu email es:
+      <%=email %> <%=edad ? `y tu edad es: ${edad}` : null %>
+    <%}%>
+
+  </body>
+</html>
